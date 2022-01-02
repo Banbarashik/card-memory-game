@@ -27,6 +27,7 @@ html {
   width: 60%;
   height: 80%;
   border: 0.3rem solid #000;
+  border-radius: 1rem;
 }
 
 /* CARDS PAIRS IMAGES */
@@ -36,7 +37,7 @@ html {
   background-repeat: no-repeat;
   background-position-x: center;
 
-  border: 2px solid black;
+  border: 0.2rem solid black;
 }
 
 .pair-1 {

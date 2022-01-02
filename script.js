@@ -3,6 +3,8 @@
 const gameField = document.getElementById('game--field');
 const cards = document.getElementsByClassName('card');
 
+const positions = [];
+
 const setGridCells = function (columns, rows) {
   gameField.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
   gameField.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
@@ -36,8 +38,6 @@ const setCardsPairClasses = function () {
   });
 };
 
-const positions = [];
-
 const generateRandomPositions = function (arr, columns, rows) {
   for (let i = 0; i < columns * rows; i++) {
     const columnStart = Math.floor(Math.random() * columns) + 1;
@@ -52,13 +52,36 @@ const generateRandomPositions = function (arr, columns, rows) {
 // randomly place cards in the grid
 const placeCardsRandomly = function (columns, rows) {
   generateRandomPositions(positions, columns, rows);
+
   Array.from(cards).forEach((card, index) => {
     card.style.gridColumnStart = positions[index].split(',')[0];
     card.style.gridRowStart = positions[index].split(',')[1];
   });
 };
 
-console.log(positions);
 setGridCells(5, 4);
 
-console.log(cards);
+const checkedCards = [];
+
+const checkIfPair = function () {
+  if (
+    checkedCards.length === 2 &&
+    checkedCards[0].classList.value !== checkedCards[1].classList.value
+  ) {
+    checkedCards[0].classList.remove('visible');
+    checkedCards[1].classList.remove('visible');
+
+    checkedCards.length = 0;
+  } else if (checkedCards.length === 2) {
+    checkedCards.length = 0;
+  }
+};
+
+Array.from(cards).forEach(card =>
+  card.addEventListener('click', () => {
+    checkedCards.push(card);
+    card.classList.add('visible');
+
+    checkIfPair();
+  })
+);
