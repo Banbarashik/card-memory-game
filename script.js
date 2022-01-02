@@ -36,14 +36,29 @@ const setCardsPairClasses = function () {
   });
 };
 
+const positions = [];
+
+const generateRandomPositions = function (arr, columns, rows) {
+  for (let i = 0; i < columns * rows; i++) {
+    const columnStart = Math.floor(Math.random() * columns) + 1;
+    const rowStart = Math.floor(Math.random() * rows) + 1;
+
+    if (arr.indexOf(`${columnStart},${rowStart}`) === -1)
+      arr.push(`${columnStart},${rowStart}`);
+    else i--;
+  }
+};
+
 // randomly place cards in the grid
 const placeCardsRandomly = function (columns, rows) {
-  Array.from(cards).forEach(card => {
-    card.style.gridColumnStart = Math.floor(Math.random() * columns) + 1;
-    card.style.gridRowStart = Math.floor(Math.random() * rows) + 1;
+  generateRandomPositions(positions, columns, rows);
+  Array.from(cards).forEach((card, index) => {
+    card.style.gridColumnStart = positions[index].split(',')[0];
+    card.style.gridRowStart = positions[index].split(',')[1];
   });
 };
 
-setGridCells(6, 6);
+console.log(positions);
+setGridCells(5, 4);
 
 console.log(cards);

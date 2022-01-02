@@ -24,7 +24,48 @@ html {
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
 
-  width: 50%;
-  height: 70%;
+  width: 60%;
+  height: 80%;
   border: 0.3rem solid #000;
+}
+
+/* CARDS PAIRS IMAGES */
+.card {
+  /* background-color: rgb(206, 206, 206); */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+
+  border: 2px solid black;
+}
+
+.pair-1 {
+  background-image: url(images/hat_kid.png);
+}
+.pair-2 {
+  background-image: url(images/mustache_girl.png);
+}
+.pair-3 {
+  background-image: url(images/conductor.png);
+}
+.pair-4 {
+  background-image: url(images/dj_grooves.png);
+}
+.pair-5 {
+  background-image: url(images/mafia.png);
+}
+.pair-6 {
+  background-image: url(images/penguin.png);
+}
+.pair-7 {
+  background-image: url(images/tourist.png);
+}
+.pair-8 {
+  background-image: url(images/vanessa.png);
+}
+.pair-9 {
+  background-image: url(images/badge_seller.png);
+}
+.pair-10 {
+  background-image: url(images/subcon_dwellers.png);
 }
