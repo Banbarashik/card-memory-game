@@ -60,10 +60,11 @@ const placeCardsRandomly = function (columns, rows) {
   });
 };
 
-setGridCells(5, 4);
-
 const resetIfNoPair = function () {
-  checkedCards.forEach(card => card.classList.remove('visible'));
+  checkedCards.forEach(card => {
+    card.classList.remove('visible');
+    card.classList.add('hidden');
+  });
 
   checkedCards.length = 0;
 
@@ -90,8 +91,11 @@ const checkIfPair = function () {
 const makeCardVisible = function (event) {
   checkedCards.push(event.target);
   event.target.classList.add('visible');
+  event.target.classList.remove('hidden');
 
   checkIfPair();
 };
+
+setGridCells(5, 4);
 
 for (const card of cards) card.addEventListener('click', makeCardVisible);

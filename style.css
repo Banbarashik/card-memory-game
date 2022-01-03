@@ -1,6 +1,3 @@
-:root {
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -17,6 +14,14 @@ html {
   align-items: center;
 
   height: 100vh;
+
+  background: url(images/bg_signature.svg) left 4% bottom 5%/10% no-repeat,
+    url(images/bg_snatcher.svg) right 5% top 5%/10% no-repeat,
+    url(images/bg_mafia.svg) left 5% top 10%/9% no-repeat,
+    url(images/bg_down_with_mafia.svg) right 3% bottom 5%/15% no-repeat,
+    url(images/bg_peck.svg) left 5% bottom 40%/7.5% no-repeat,
+    url(images/bg_mustache.svg) right 5% bottom 45%/10% no-repeat;
+  background-color: hsl(276deg 89% 77%);
 }
 
 #game--field {
@@ -32,18 +37,16 @@ html {
 
 /* CARDS PAIRS IMAGES */
 .card {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position-x: center;
-
   border: 0.2rem solid black;
 }
 
 .hidden {
-  background-color: #999;
+  background: rgb(149 54 202) url(images/card_icon.png) center/55% no-repeat;
 }
 
 .visible {
+  background: center/contain no-repeat;
+
   pointer-events: none;
 }
 
