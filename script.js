@@ -4,6 +4,7 @@ const gameField = document.getElementById('game--field');
 const cards = document.getElementsByClassName('card');
 
 const positions = [];
+const checkedCards = [];
 
 const setGridCells = function (columns, rows) {
   gameField.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
@@ -16,7 +17,7 @@ const fillGridCells = function (columns, rows) {
   for (let i = 0; i < columns * rows; i++) {
     const cell = document.createElement('div');
 
-    cell.classList.add('card');
+    cell.classList.add('card', 'hidden');
 
     gameField.appendChild(cell);
   }
@@ -61,27 +62,36 @@ const placeCardsRandomly = function (columns, rows) {
 
 setGridCells(5, 4);
 
-const checkedCards = [];
+const resetIfNoPair = function () {
+  checkedCards.forEach(card => card.classList.remove('visible'));
+
+  checkedCards.length = 0;
+
+  Array.from(cards).forEach(card => (card.style.pointerEvents = ''));
+};
 
 const checkIfPair = function () {
   if (
     checkedCards.length === 2 &&
     checkedCards[0].classList.value !== checkedCards[1].classList.value
   ) {
-    checkedCards[0].classList.remove('visible');
-    checkedCards[1].classList.remove('visible');
+    Array.from(cards).forEach(card => (card.style.pointerEvents = 'none')); // disable all cards while the timeout function didn't execute
 
-    checkedCards.length = 0;
+    setTimeout(resetIfNoPair, 1000);
   } else if (checkedCards.length === 2) {
+    checkedCards.forEach(card =>
+      card.removeEventListener('click', makeCardVisible)
+    );
+
     checkedCards.length = 0;
   }
 };
 
-Array.from(cards).forEach(card =>
-  card.addEventListener('click', () => {
-    checkedCards.push(card);
-    card.classList.add('visible');
+const makeCardVisible = function (event) {
+  checkedCards.push(event.target);
+  event.target.classList.add('visible');
 
-    checkIfPair();
-  })
-);
+  checkIfPair();
+};
+
+for (const card of cards) card.addEventListener('click', makeCardVisible);

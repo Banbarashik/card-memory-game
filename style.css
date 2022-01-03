@@ -32,7 +32,6 @@ html {
 
 /* CARDS PAIRS IMAGES */
 .card {
-  /* background-color: rgb(206, 206, 206); */
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: center;
@@ -40,33 +39,41 @@ html {
   border: 0.2rem solid black;
 }
 
-.pair-1 {
+.hidden {
+  background-color: #999;
+}
+
+.visible {
+  pointer-events: none;
+}
+
+.pair-1.visible {
   background-image: url(images/hat_kid.png);
 }
-.pair-2 {
+.pair-2.visible {
   background-image: url(images/mustache_girl.png);
 }
-.pair-3 {
+.pair-3.visible {
   background-image: url(images/conductor.png);
 }
-.pair-4 {
+.pair-4.visible {
   background-image: url(images/dj_grooves.png);
 }
-.pair-5 {
+.pair-5.visible {
   background-image: url(images/mafia.png);
 }
-.pair-6 {
+.pair-6.visible {
   background-image: url(images/penguin.png);
 }
-.pair-7 {
+.pair-7.visible {
   background-image: url(images/tourist.png);
 }
-.pair-8 {
+.pair-8.visible {
   background-image: url(images/vanessa.png);
 }
-.pair-9 {
+.pair-9.visible {
   background-image: url(images/badge_seller.png);
 }
-.pair-10 {
+.pair-10.visible {
   background-image: url(images/subcon_dwellers.png);
 }
