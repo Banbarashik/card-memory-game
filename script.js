@@ -6,7 +6,18 @@ const cards = document.getElementsByClassName('card');
 const positions = [];
 const checkedCards = [];
 
-const setGridCells = function (columns, rows) {
+// Generated DOM elements
+const winMessage = document.createElement('p');
+winMessage.textContent = 'You won! Wanna play again?';
+
+const btnNewGame = document.createElement('button');
+btnNewGame.textContent = 'Start new game';
+
+const setGameField = function (e, columns = 5, rows = 4) {
+  gameField.classList.remove('game-end-screen');
+  if (winMessage.parentElement === gameField) gameField.removeChild(winMessage);
+  if (btnNewGame.parentElement === gameField) gameField.removeChild(btnNewGame);
+
   gameField.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
   gameField.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
 
@@ -22,8 +33,13 @@ const fillGridCells = function (columns, rows) {
     gameField.appendChild(cell);
   }
 
+  addCardsEvents();
   setCardsPairClasses();
   placeCardsRandomly(columns, rows);
+};
+
+const addCardsEvents = function () {
+  for (const card of cards) card.addEventListener('click', makeCardVisible);
 };
 
 // Connecting pairs of cards by a 'pair-i' class
@@ -110,9 +126,15 @@ const checkIfGameEnd = function () {
 
 const gameEnd = function () {
   gameField.replaceChildren();
-  gameField.style.backgroundColor = 'rgb(149 54 202)';
+
+  positions.length = 0;
+
+  gameField.classList.add('game-end-screen');
+
+  gameField.appendChild(winMessage);
+  gameField.appendChild(btnNewGame);
 };
 
-setGridCells(5, 4);
+setGameField(5, 4);
 
-for (const card of cards) card.addEventListener('click', makeCardVisible);
+btnNewGame.addEventListener('click', setGameField);

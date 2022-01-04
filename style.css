@@ -26,8 +26,6 @@ html {
 
 #game--field {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
 
   width: 60%;
   height: 80%;
@@ -35,6 +33,16 @@ html {
   border-radius: 1rem;
 }
 
+#game--field.game-end-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  background-color: rgb(149 54 202);
+  font-size: 5.6rem;
+}
 /* CARDS PAIRS IMAGES */
 .card {
   border: 0.2rem solid black;
