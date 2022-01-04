@@ -94,6 +94,23 @@ const makeCardVisible = function (event) {
   event.target.classList.remove('hidden');
 
   checkIfPair();
+  if (checkIfGameEnd()) gameEnd();
+};
+
+const checkIfGameEnd = function () {
+  let checker = true;
+
+  for (const card of cards) {
+    if (card.classList.contains('visible')) continue;
+    else checker = false;
+  }
+
+  return checker;
+};
+
+const gameEnd = function () {
+  gameField.replaceChildren();
+  gameField.style.backgroundColor = 'rgb(149 54 202)';
 };
 
 setGridCells(5, 4);
